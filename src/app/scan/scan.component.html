@@ -3,6 +3,13 @@
 <zxing-scanner [formats]="[ 'CODE_128']" (scanSuccess)="onResult($event)"  [(device)]="currentDevice" (camerasFound)="onCamerasFound($event)">
 </zxing-scanner>
 </div>
+<section class="results" *ngIf="code">
+  <div>
+    <small>Result</small>
+    <strong>{{ code }}</strong>
+  </div>
+  <button mat-icon-button (click)="clearResult()">&times;</button>
+</section>
 <div class="row" style="margin: 20px">
   <table class="table table-dark">
     <thead>

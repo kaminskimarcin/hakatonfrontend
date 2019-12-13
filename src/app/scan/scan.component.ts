@@ -13,6 +13,8 @@ export class ScanComponent implements OnInit {
 
   private currentDevice: MediaDeviceInfo;
   private  items: Array<Item>;
+  private code: number;
+
 
   constructor(private rest: RestService, private router: Router, private collector: DataCollectorService) {
   }
@@ -21,19 +23,23 @@ export class ScanComponent implements OnInit {
   }
 
   onResult(qrCode: string) {
-    let code = Number(qrCode);
+    this.code = Number(qrCode);
     let items = this.collector.getItems();
-    console.log(code);
+    console.log(this.code);
     if(items.length > 1) {
-      this.rest.getItemsListForProcess(code).then(value => this.items = value.body);
+      this.rest.getItemsListForProcess(this.code).then(value => this.items = value.body);
       this.collector.setItems(this.items);
     } else {
-       items.filter(item => item.id === code).forEach(item => item.status = "checked");
+       items.filter(item => item.id === this.code).forEach(item => item.status = "checked");
     }
   }
 
   onCamerasFound(devices: MediaDeviceInfo[]): void {
     this.currentDevice = devices[0];
+  }
+
+  clearResult(): void{
+    this.code = null;
   }
 
 }
