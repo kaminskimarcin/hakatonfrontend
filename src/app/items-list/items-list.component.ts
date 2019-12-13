@@ -16,7 +16,7 @@ export class ItemsListComponent implements OnInit {
   private items: Array<Item> = Array<Item>();
 
   ngOnInit() {
-    this.items = this.dataCollector.items;
+    this.items = this.dataCollector.getItems();
     this.item = new Item(1, "desc", 3, 3, "scanned");
   }
 
@@ -26,6 +26,7 @@ export class ItemsListComponent implements OnInit {
 
   openScanner() {
     this.router.navigate(['/scan']);
+    this.dataCollector.setItems(this.items);
   }
 
 
