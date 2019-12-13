@@ -21,13 +21,13 @@ export class ScanComponent implements OnInit {
   }
 
   onResult(qrCode: string) {
-    let code = Number(qrCode)
+    let code = Number(qrCode);
     let items = this.collector.getItems();
     console.log(code);
-    if(items != null && items.length < 1) {
+    if(items === undefined) {
       this.rest.getItemsListForProcess(code).then(value => this.items = value.body);
       this.collector.setItems(this.items);
-    }else {
+    } else {
        items.filter(item => item.id === code).forEach(item => item.status = "checked");
     }
   }
