@@ -9,6 +9,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { HomePageComponent } from './home-page/home-page.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -17,13 +18,14 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     ScanComponent,
     HomePageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    ZXingScannerModule.forRoot(),
-    HttpClientModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        ZXingScannerModule.forRoot(),
+        HttpClientModule,
+        FormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

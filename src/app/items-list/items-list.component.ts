@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Item} from "../model/items.model";
 import {DataCollectorService} from "../services/data-collector.service";
 import {Router} from "@angular/router";
+import {RestService} from "../services/rest.service";
+import {ItemsList} from "../model/itemsList";
 
 @Component({
   selector: 'app-items-list',
@@ -10,7 +12,7 @@ import {Router} from "@angular/router";
 })
 export class ItemsListComponent implements OnInit {
 
-  constructor(public dataCollector: DataCollectorService, public router: Router) {}
+  constructor(public dataCollector: DataCollectorService, public router: Router, public rest: RestService) {}
 
   private item: Item;
   private items: Array<Item> = Array<Item>();
@@ -22,6 +24,10 @@ export class ItemsListComponent implements OnInit {
 
   submit() {
     console.log("Data submitted");
+    this.dataCollector.setItems(this.items);
+    this.items.forEach(item => console.log(item.quantity));
+    let itemList: ItemsList = new ItemsList(this.dataCollector.getOrderId(), this.dataCollector.getItems());
+    this.rest.postCompletedItemsListForProcess(itemList);
   }
 
   openScanner() {
