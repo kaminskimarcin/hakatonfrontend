@@ -9,6 +9,13 @@
   </div>
   <button mat-icon-button (click)="clearResult()">&times;</button>
 </section>
+<section class="results" *ngIf="code">
+  <div class="center">
+    <p>Unfortunately the product has not been scanned. Please verify and try again.</p>
+  </div>
+  <button mat-icon-button (click)="clearError()">&times;</button>
+</section>
+
 <div class="row" style="margin: 20px">
   <table class="table table-dark">
     <thead>

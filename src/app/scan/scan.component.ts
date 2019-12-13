@@ -14,6 +14,8 @@ export class ScanComponent implements OnInit {
   private currentDevice: MediaDeviceInfo;
   private  items: Array<Item>;
   private code: number;
+  private error: boolean;
+  private success: boolean;
 
 
   constructor(private rest: RestService, private router: Router, private collector: DataCollectorService) {
@@ -30,7 +32,8 @@ export class ScanComponent implements OnInit {
       this.rest.getItemsListForProcess(this.code).then(value => this.items = value.body);
       this.collector.setItems(this.items);
     } else {
-       items.filter(item => item.id === this.code).forEach(item => item.status = "checked");
+       items.filter(item => item.id === this.code).forEach(item =>
+       {item.status = "checked"; this.success = true});
     }
   }
 
