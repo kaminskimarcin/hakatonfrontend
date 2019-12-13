@@ -12,6 +12,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 const routes: Routes = [
   { path: 'itemList', component: ItemsListComponent},
+  {path:  'scan', component: ScanComponent}
 ];
 @NgModule({
   declarations: [

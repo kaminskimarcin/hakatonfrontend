@@ -23,5 +23,4 @@ export class RestService {
       observe: 'response'
     });
   }
-
 }

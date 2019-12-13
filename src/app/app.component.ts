@@ -13,6 +13,6 @@ export class AppComponent {
   }
 
   public openScanner() {
-    this.router.navigate(['/scanner']);
+    this.router.navigate(['/scan']);
   }
 }

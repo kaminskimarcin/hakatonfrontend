@@ -9,7 +9,6 @@ import {Item} from "../model/items.model";
 export class ItemsListComponent implements OnInit {
 
   constructor(/*items: Array<Item>*/) {
-    // this.items = items;
   }
 
   private item: Item;

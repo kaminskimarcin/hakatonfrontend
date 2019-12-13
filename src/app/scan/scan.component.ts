@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {RestService} from "../rest/rest.service";
+import {Item} from "../model/items.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-scan',
@@ -7,15 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScanComponent implements OnInit {
 
-  qrCode: String
-
-  constructor() { }
+  constructor(private rest: RestService, private router: Router) {
+  }
 
   ngOnInit() {
   }
 
   onResult(qrCode: string) {
-    this.qrCode = qrCode;
+    console.log(qrCode);
+    let items = this.rest.getItemsListForProcess(Number(qrCode));
+
   }
 
 }
