@@ -35,17 +35,20 @@ export class ScanComponent implements OnInit {
       });
     } else {
        items.filter(item => item.id === this.code).forEach(item => item.status = "Checked");
-       items.filter(item => item.id === this.code).forEach(item => {
+       this.collector.getItems().forEach(item => {
          if (item.status === "Checked") {
            this.count++;
          }
-
+         console.log(item.status);
+         console.log(item.id);
          console.log(this.count);
          if (this.count === items.length) {
            this.router.navigate(['/itemList']);
          }}
        );
     }
+    this.collector.setItems(items);
+    this.count = 0;
   }
 
   onCamerasFound(devices: MediaDeviceInfo[]): void {

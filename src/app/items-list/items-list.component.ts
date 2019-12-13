@@ -4,6 +4,8 @@ import {DataCollectorService} from "../services/data-collector.service";
 import {Router} from "@angular/router";
 import {RestService} from "../services/rest.service";
 import {ItemsList} from "../model/itemsList";
+import {removeSummaryDuplicates} from "@angular/compiler";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-items-list',
@@ -27,7 +29,11 @@ export class ItemsListComponent implements OnInit {
     this.dataCollector.setItems(this.items);
     this.items.forEach(item => console.log(item.quantity));
     let itemList: ItemsList = new ItemsList(this.dataCollector.getOrderId(), this.dataCollector.getItems());
-    this.rest.postCompletedItemsListForProcess(itemList);
+    this.rest.postCompletedItemsListForProcess(itemList).then(result => {
+      if (result.body === 201) {
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   openScanner() {
