@@ -24,7 +24,7 @@ export class ScanComponent implements OnInit {
     let code = Number(qrCode);
     let items = this.collector.getItems();
     console.log(code);
-    if(items === undefined &&  items.length > 1) {
+    if(items.length > 1) {
       this.rest.getItemsListForProcess(code).then(value => this.items = value.body);
       this.collector.setItems(this.items);
     } else {
