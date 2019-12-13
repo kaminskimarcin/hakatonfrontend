@@ -8,15 +8,16 @@ import {Item} from "../model/items.model";
 })
 export class ItemsListComponent implements OnInit {
 
-  constructor(items: Item[]) {
-    this.items = items;
+  constructor(/*items: Array<Item>*/) {
+    // this.items = items;
   }
 
   private item: Item;
-  private items: Item[];
+  private items: Array<Item> = Array<Item>();
 
   ngOnInit() {
-    this.item = new Item(1, "desc", 3, 3, "string")
+    this.item = new Item(1, "desc", 3, 3, "string");
+    this.items.push(this.item);
   }
 
 }
