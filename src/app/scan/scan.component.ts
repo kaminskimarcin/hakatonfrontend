@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RestService} from "../services/rest.service";
 import {Router} from "@angular/router";
 import {DataCollectorService} from "../services/data-collector.service"
@@ -12,9 +12,11 @@ import {Item} from "../model/items.model";
 export class ScanComponent implements OnInit {
 
   private currentDevice: MediaDeviceInfo;
-  private  items: Array<Item>;
+  private items: Array<Item>;
   private code: number;
   private count: number = 0;
+  private success: boolean = false;
+  private error: boolean = false;
 
   constructor(private rest: RestService, private router: Router, private collector: DataCollectorService) {
   }
@@ -27,24 +29,36 @@ export class ScanComponent implements OnInit {
     this.collector.setOrderId(Number(qrCode));
     let items = this.collector.getItems();
     console.log(this.code);
-    if(items.length < 1) {
+    if (items.length < 1) {
       this.rest.getItemsListForProcess(this.code).then(value => {
         value.body.forEach(item => item.status = "Unchecked");
         this.items = value.body;
         this.collector.setItems(this.items);
+        if (this.items.length > 0) {
+          this.success = true;
+        } else {
+          this.error = true;
+        }
       });
     } else {
-       items.filter(item => item.id === this.code).forEach(item => item.status = "Checked");
-       items.filter(item => item.id === this.code).forEach(item => {
-         if (item.status === "Checked") {
-           this.count++;
-         }
+      if (items.filter(item => item.id === this.code).length > 0) {
+        this.success = true;
+      } else {
+        this.error = false;
+      }
 
-         console.log(this.count);
-         if (this.count === items.length) {
-           this.router.navigate(['/itemList']);
-         }}
-       );
+      items.filter(item => item.id === this.code).forEach(item => item.status = "Checked");
+      items.filter(item => item.id === this.code).forEach(item => {
+          if (item.status === "Checked") {
+            this.count++;
+          }
+
+          console.log(this.count);
+          if (this.count === items.length) {
+            this.router.navigate(['/itemList']);
+          }
+        }
+      );
     }
   }
 
@@ -52,8 +66,13 @@ export class ScanComponent implements OnInit {
     this.currentDevice = devices[0];
   }
 
-  clearResult(): void{
-    this.code = null;
+  clearResult(): void {
+    this.success = null;
   }
 
+  clearError(): void{
+    this.error = null;
+  }
 }
+
+
