@@ -1,5 +1,5 @@
 
 <div class="scanner-shell">
 
-<zxing-scanner (scanSuccess)="onResult($event)"> </zxing-scanner>
+<zxing-scanner [formats]="[ 'CODE_128']", (scanSuccess)="onResult($event)"> </zxing-scanner>
 </div>

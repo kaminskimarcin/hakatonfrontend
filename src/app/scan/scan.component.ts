@@ -18,7 +18,7 @@ export class ScanComponent implements OnInit {
 
   onResult(qrCode: string) {
     console.log(qrCode);
-    let items = this.rest.getItemsListForProcess(Number(qrCode));
+    //let items = this.rest.getItemsListForProcess(Number(qrCode));
 
   }
 
