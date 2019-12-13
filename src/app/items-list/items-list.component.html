@@ -20,10 +20,14 @@
         {{item.status}}
       </td>
       <td>
-        {{item.qty}}
+        <label>
+          <input [(ngModel)]="item.quantity" />
+        </label>
       </td>
       <td>
-        {{item.batch}}
+        <label>
+          <input [(ngModel)]="item.batch" />
+        </label>
       </td>
     </tr>
 

@@ -25,10 +25,11 @@
       <td>{{item.id}}</td>
       <td>{{item.description}}</td>
       <td>
-        {{item.status}}
+        <p *ngIf="item.status === 'Unchecked'" style="color: red">{{item.status}}</p>
+        <p *ngIf="item.status === 'Checked'" style="color: green">{{item.status}}</p>
       </td>
       <td>
-        {{item.qty}}
+        {{item.quantity}}
       </td>
       <td>
         {{item.batch}}
