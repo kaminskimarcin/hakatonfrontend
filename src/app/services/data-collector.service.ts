@@ -8,11 +8,11 @@ export class DataCollectorService {
   private _items: Array<Item>;
 
 
-  get items(): Array<Item> {
+  getItems(): Array<Item> {
     return this._items;
   }
 
-  set items(value: Array<Item>) {
+  setItems(value: Array<Item>) {
     this._items = value;
   }
 }
