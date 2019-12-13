@@ -24,7 +24,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     NgbModule,
     ZXingScannerModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

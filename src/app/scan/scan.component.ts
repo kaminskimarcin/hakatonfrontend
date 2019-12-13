@@ -10,6 +10,8 @@ import {Router} from "@angular/router";
 })
 export class ScanComponent implements OnInit {
 
+  private currentDevice: MediaDeviceInfo;
+
   constructor(private rest: RestService, private router: Router) {
   }
 
@@ -18,8 +20,12 @@ export class ScanComponent implements OnInit {
 
   onResult(qrCode: string) {
     console.log(qrCode);
-    //let items = this.rest.getItemsListForProcess(Number(qrCode));
+    let items = this.rest.getItemsListForProcess(Number(qrCode));
+  }
 
+
+  onCamerasFound(devices: MediaDeviceInfo[]): void {
+    this.currentDevice = devices[0];
   }
 
 }

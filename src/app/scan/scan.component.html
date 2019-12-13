@@ -1,5 +1,6 @@
 
 <div class="scanner-shell">
 
-<zxing-scanner [formats]="[ 'CODE_128']", (scanSuccess)="onResult($event)"> </zxing-scanner>
+<zxing-scanner [formats]="[ 'CODE_128']" (scanSuccess)="onResult($event)"  [(device)]="currentDevice" (camerasFound)="onCamerasFound($event)">
+</zxing-scanner>
 </div>

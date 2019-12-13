@@ -24,16 +24,16 @@ export class RestService {
     });
   }
 
-  public postCompletedItemsListForProcess(items: Item[]): Promise<HttpResponse<Number>> {
-    const httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Cache-Control': 'no-cache'
-    });
-
-    return this.httpClient.post<Number>(this.resourceUrl + 'postCompletedItemsListForProcess', items, {
-      headers: httpHeaders,
-      observe: 'response'
-    }).toPromise();
-  }
+  // public postCompletedItemsListForProcess(items: Item[]): Promise<HttpResponse<Number>> {
+  //   const httpHeaders = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Cache-Control': 'no-cache'
+  //   });
+  //
+  //   return this.httpClient.post<Number>(this.resourceUrl + 'postCompletedItemsListForProcess', items, {
+  //     headers: httpHeaders,
+  //     observe: 'response'
+  //   }).toPromise();
+  // }
 
 }
