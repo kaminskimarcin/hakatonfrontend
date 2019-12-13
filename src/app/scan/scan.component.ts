@@ -23,7 +23,7 @@ export class ScanComponent implements OnInit {
   onResult(qrCode: string) {
     console.log(qrCode);
     this.rest.getItemsListForProcess(Number(qrCode)).then(value => this.items = value.body);
-    this.collector.items(this.items);
+    this.collector.setItems(this.items);
   }
 
   onCamerasFound(devices: MediaDeviceInfo[]): void {
