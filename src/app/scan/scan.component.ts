@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RestService} from "../services/rest.service";
 import {Router} from "@angular/router";
 import {DataCollectorService} from "../services/data-collector.service"
@@ -12,7 +12,7 @@ import {Item} from "../model/items.model";
 export class ScanComponent implements OnInit {
 
   private currentDevice: MediaDeviceInfo;
-  private  items: Array<Item>;
+  private items: Array<Item>;
   private code: number;
   private count: number = 0;
   private success: boolean = false;
@@ -29,17 +29,18 @@ export class ScanComponent implements OnInit {
     this.collector.setOrderId(Number(qrCode));
     let items = this.collector.getItems();
     console.log(this.code);
-    if(items.length < 1) {
+    if (items.length < 1) {
       this.rest.getItemsListForProcess(this.code).then(value => {
         value.body.forEach(item => item.status = "Unchecked");
         this.items = value.body;
         this.collector.setItems(this.items);
-        if (this.items.length > 0) {
-          this.success = true;
-        } else {
-          this.error = true;
-        }
-      });
+      }).catch(err => this.error);
+
+      if (items.length > 0) {
+        this.success = true;
+      } else if(items.length < 1){
+        this.error = true;
+      }
     } else {
       if (items.filter(item => item.id === this.code).length > 0) {
         this.success = true;
@@ -72,7 +73,7 @@ export class ScanComponent implements OnInit {
     this.success = null;
   }
 
-  clearError(): void{
+  clearError(): void {
     this.error = null;
   }
 }
