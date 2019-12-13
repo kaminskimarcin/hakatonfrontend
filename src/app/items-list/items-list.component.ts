@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Item} from "../model/items.model";
+import {DataCollectorService} from "../services/data-collector.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-items-list',
@@ -8,21 +10,23 @@ import {Item} from "../model/items.model";
 })
 export class ItemsListComponent implements OnInit {
 
-  constructor(/*items: Array<Item>*/) {
-  }
+  constructor(public dataCollector: DataCollectorService, public router: Router) {}
 
   private item: Item;
   private items: Array<Item> = Array<Item>();
 
   ngOnInit() {
+    this.items = this.dataCollector.items;
     this.item = new Item(1, "desc", 3, 3, "scanned");
-    this.items.push(this.item);
-    this.items.push(this.item);
-    this.items.push(this.item);
-    this.items.push(this.item);
-    this.items.push(this.item);
-    this.items.push(this.item);
-    this.items.push(this.item);
   }
+
+  submit() {
+    console.log("Data submitted");
+  }
+
+  openScanner() {
+    this.router.navigate(['/scan']);
+  }
+
 
 }
