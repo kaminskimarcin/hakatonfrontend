@@ -1,7 +1,5 @@
 <div class="row">
-  asdasdasdasdasd
-  asdasdasdasdasd
-  <table class="table">
+  <table class="table table-dark">
     <thead>
     <tr>
       <th>Id</th>
@@ -13,16 +11,16 @@
     </thead>
     <tbody>
     <tr *ngFor="let item of items">
-      <td>item.id</td>
-      <td>item.description</td>
+      <td>{{item.id}}</td>
+      <td>{{item.description}}</td>
       <td>
-        item.status
+        {{item.status}}
       </td>
       <td>
-        item.batch
+        {{item.qty}}
       </td>
       <td>
-        item.status
+        {{item.batch}}
       </td>
     </tr>
 
