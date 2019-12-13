@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {RestService} from "../rest/rest.service";
-import {Item} from "../model/items.model";
 import {Router} from "@angular/router";
+import {DataCollectorService} from "../services/data-collector.service"
+import {Item} from "../model/items.model";
 
 @Component({
   selector: 'app-scan',
@@ -11,8 +12,9 @@ import {Router} from "@angular/router";
 export class ScanComponent implements OnInit {
 
   private currentDevice: MediaDeviceInfo;
+  private  items: Array<Item>;
 
-  constructor(private rest: RestService, private router: Router) {
+  constructor(private rest: RestService, private router: Router, private collector: DataCollectorService) {
   }
 
   ngOnInit() {
@@ -20,9 +22,9 @@ export class ScanComponent implements OnInit {
 
   onResult(qrCode: string) {
     console.log(qrCode);
-    let items = this.rest.getItemsListForProcess(Number(qrCode));
+    this.rest.getItemsListForProcess(Number(qrCode)).then(value => this.items = value.body);
+    this.collector.items(this.items);
   }
-
 
   onCamerasFound(devices: MediaDeviceInfo[]): void {
     this.currentDevice = devices[0];
