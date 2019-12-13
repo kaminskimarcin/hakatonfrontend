@@ -4,9 +4,8 @@
 </zxing-scanner>
 </div>
 <section class="results" *ngIf="code">
-  <div>
-    <small>Result</small>
-    <strong>{{ code }}</strong>
+  <div class="center">
+    <p>Success ! Scanned product's bar code: <strong>{{ code }}</strong></p>
   </div>
   <button mat-icon-button (click)="clearResult()">&times;</button>
 </section>

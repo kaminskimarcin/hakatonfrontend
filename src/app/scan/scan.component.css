@@ -2,5 +2,26 @@
   height: 50%!important;
   width: 50%!important;
   align-content: center!important;
+  padding-top: 20px;
   margin:0 auto;
+}
+
+.results{
+  height: 50%!important;
+  width: 50%!important;
+  align-content: center!important;
+  position: sticky;
+  bottom: 0;
+  background: green;
+  color: #fff;
+  display: flex;
+  margin:0 auto;
+  justify-content: space-between;
+}
+
+.center p{
+ text-align: center;
+ margin-top: 0;
+ margin-bottom: 0;
+ margin-left: 10px;
 }
