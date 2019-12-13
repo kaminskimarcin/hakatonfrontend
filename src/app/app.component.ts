@@ -8,11 +8,4 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
   title = 'barcodefront';
-
-  constructor(private router: Router) {
-  }
-
-  public openScanner() {
-    this.router.navigate(['/scanner']);
-  }
 }

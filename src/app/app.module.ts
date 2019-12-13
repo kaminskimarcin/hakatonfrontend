@@ -9,15 +9,14 @@ import {RouterModule, Routes} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import {RestService} from "./rest/rest.service";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { HomePageComponent } from './home-page/home-page.component';
 
-const routes: Routes = [
-  { path: 'itemList', component: ItemsListComponent},
-];
 @NgModule({
   declarations: [
     AppComponent,
     ItemsListComponent,
-    ScanComponent
+    ScanComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

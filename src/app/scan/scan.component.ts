@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScanComponent implements OnInit {
 
-  qrCode: String
+  qrCode: String;
 
   constructor() { }
 
