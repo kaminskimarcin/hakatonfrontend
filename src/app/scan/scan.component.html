@@ -1,6 +1,34 @@
 
 <div class="scanner-shell">
-
 <zxing-scanner [formats]="[ 'CODE_128']" (scanSuccess)="onResult($event)"  [(device)]="currentDevice" (camerasFound)="onCamerasFound($event)">
 </zxing-scanner>
+</div>
+<div class="row" style="margin: 20px">
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Quantity</th>
+      <th>Batch</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{item.id}}</td>
+      <td>{{item.description}}</td>
+      <td>
+        {{item.status}}
+      </td>
+      <td>
+        {{item.qty}}
+      </td>
+      <td>
+        {{item.batch}}
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
 </div>
