@@ -16,7 +16,13 @@ export class ItemsListComponent implements OnInit {
   private items: Array<Item> = Array<Item>();
 
   ngOnInit() {
-    this.item = new Item(1, "desc", 3, 3, "string");
+    this.item = new Item(1, "desc", 3, 3, "scanned");
+    this.items.push(this.item);
+    this.items.push(this.item);
+    this.items.push(this.item);
+    this.items.push(this.item);
+    this.items.push(this.item);
+    this.items.push(this.item);
     this.items.push(this.item);
   }
 
