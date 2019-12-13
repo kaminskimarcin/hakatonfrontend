@@ -1,8 +1,9 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {ItemsListComponent} from "./items-list/items-list.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/app-items-list', pathMatch: 'full' },
+  { path: 'itemList', component: ItemsListComponent},
 ];
 
 @NgModule({
