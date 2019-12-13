@@ -1,5 +1,4 @@
-<button type="button" class="btn btn-primary" (click)="openScanner()">Scan barcodes</button>
-
+<button type="button" style="margin: 20px" class="btn btn-primary" (click)="openScanner()">Scan barcodes</button>
 
 <div class="row" style="margin: 20px">
   <table class="table table-dark">
@@ -35,5 +34,5 @@
   </table>
 </div>
 
-<button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
+<button type="button" style="margin: 20px auto auto 20px" class="btn btn-primary" *ngIf="canSubmit()" (click)="submit()">Submit</button>
 

@@ -4,8 +4,6 @@ import {DataCollectorService} from "../services/data-collector.service";
 import {Router} from "@angular/router";
 import {RestService} from "../services/rest.service";
 import {ItemsList} from "../model/itemsList";
-import {removeSummaryDuplicates} from "@angular/compiler";
-import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-items-list',
@@ -18,6 +16,8 @@ export class ItemsListComponent implements OnInit {
 
   private item: Item;
   private items: Array<Item> = Array<Item>();
+  private isSubmit: boolean = false;
+
 
   ngOnInit() {
     this.items = this.dataCollector.getItems();
@@ -30,8 +30,11 @@ export class ItemsListComponent implements OnInit {
     this.items.forEach(item => console.log(item.quantity));
     let itemList: ItemsList = new ItemsList(this.dataCollector.getOrderId(), this.dataCollector.getItems());
     this.rest.postCompletedItemsListForProcess(itemList).then(result => {
-      if (result.body === 201) {
+      if (result.status === 201) {
         this.router.navigate(['/']);
+        this.dataCollector.setItems(new Array<Item>())
+      } else {
+
       }
     });
   }
@@ -41,5 +44,11 @@ export class ItemsListComponent implements OnInit {
     this.dataCollector.setItems(this.items);
   }
 
+  canSubmit() {
+    this.items.forEach(item => {
+      this.isSubmit = item.status === 'Checked' && item.batch !== undefined && item.description !== undefined && item.quantity !== undefined;
+    });
 
+    return this.isSubmit;
+  }
 }

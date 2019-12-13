@@ -22,46 +22,43 @@ export class ScanComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.items = this.collector.getItems();
   }
 
   onResult(qrCode: string) {
     this.code = Number(qrCode);
     this.collector.setOrderId(Number(qrCode));
-    let items = this.collector.getItems();
     console.log(this.code);
-    if (items.length < 1) {
+    if(this.items.length < 1) {
       this.rest.getItemsListForProcess(this.code).then(value => {
         value.body.forEach(item => item.status = "Unchecked");
         this.items = value.body;
         this.collector.setItems(this.items);
-      }).catch(err => this.error);
-
-      if (items.length > 0) {
         this.success = true;
-      } else if(items.length < 1){
-        this.error = true;
-      }
-    } else {
-      if (items.filter(item => item.id === this.code).length > 0) {
-        this.success = true;
-      } else {
         this.error = false;
+      }).catch(err => {this.error = true; this.success = false});
+    } else {
+      if (this.items.filter(item => item.id === this.code).length > 0) {
+        this.success = true;
+        this.error = false;
+      } else {
+        this.error = true;
+        this.success = false;
       }
-
-      items.filter(item => item.id === this.code).forEach(item => item.status = "Checked");
-      items.filter(item => item.id === this.code).forEach(item => {
-          if (item.status === "Checked") {
-            this.count++;
-          }
-
-          console.log(this.count);
-          if (this.count === items.length) {
-            this.router.navigate(['/itemList']);
-          }
-        }
-      );
+      this.items.filter(item => item.id === this.code).forEach(item => item.status = "Checked");
+       this.collector.getItems().forEach(item => {
+         if (item.status === "Checked") {
+           this.count++;
+         }
+         console.log(item.status);
+         console.log(item.id);
+         console.log(this.count);
+         if (this.count ===  this.items.length) {
+           this.router.navigate(['/itemList']);
+         }}
+       );
     }
-    this.collector.setItems(items);
+    this.collector.setItems( this.items);
     this.count = 0;
   }
 
@@ -73,6 +70,14 @@ export class ScanComponent implements OnInit {
     this.success = null;
   }
 
+  updateData() {
+    this.router.navigate(['/itemList']);
+  }
+
+  canUpdate() {
+    console.log(this.items);
+    return this.items.length !== undefined && this.items.length !== 0;
+  }
   clearError(): void {
     this.error = null;
   }
