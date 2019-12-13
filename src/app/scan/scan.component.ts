@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {RestService} from "../services/rest.service";
 import {Router} from "@angular/router";
 import {DataCollectorService} from "../services/data-collector.service"
@@ -12,7 +12,7 @@ import {Item} from "../model/items.model";
 export class ScanComponent implements OnInit {
 
   private currentDevice: MediaDeviceInfo;
-  private items: Array<Item>;
+  private  items: Array<Item>;
   private code: number;
   private count: number = 0;
   private success: boolean = false;
@@ -29,7 +29,7 @@ export class ScanComponent implements OnInit {
     this.collector.setOrderId(Number(qrCode));
     let items = this.collector.getItems();
     console.log(this.code);
-    if (items.length < 1) {
+    if(items.length < 1) {
       this.rest.getItemsListForProcess(this.code).then(value => {
         value.body.forEach(item => item.status = "Unchecked");
         this.items = value.body;
@@ -60,6 +60,8 @@ export class ScanComponent implements OnInit {
         }
       );
     }
+    this.collector.setItems(items);
+    this.count = 0;
   }
 
   onCamerasFound(devices: MediaDeviceInfo[]): void {

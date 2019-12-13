@@ -5,12 +5,16 @@ import {Item} from "../model/items.model";
   providedIn: 'root'
 })
 export class DataCollectorService {
-  private _items: Array<Item> = new Array<Item>();
+  private _items: Array<Item>;
   private _orderId: number = 0;
 
 
   getItems(): Array<Item> {
-    return this._items;
+    if (this._items === undefined) {
+      return new Array<Item>();
+    } else {
+      return this._items;
+    }
   }
 
   setItems(value: Array<Item>) {
