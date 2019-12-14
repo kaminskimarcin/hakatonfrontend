@@ -1,5 +1,4 @@
-
-<div class="scanner-shell">
+  <div class="scanner-shell">
 <zxing-scanner [formats]="[ 'CODE_128']" (scanSuccess)="onResult($event)"  [(device)]="currentDevice" (camerasFound)="onCamerasFound($event)">
 </zxing-scanner>
 </div>
@@ -15,6 +14,9 @@
   </div>
   <button mat-icon-button (click)="clearError()">&times;</button>
 </section>
+
+<div *ngIf="canFinish()" style="text-align: center; margin-top: 20px"><h3>Scan {{items.length - itemsChecked.size}} more to finish</h3></div>
+<div *ngIf="!canFinish()" style="text-align: center; margin-top: 20px"><h3>Scan barcode with order id </h3></div>
 
 <div class="row" style="margin: 20px">
   <table class="table table-dark">

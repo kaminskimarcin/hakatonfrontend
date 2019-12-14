@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {RestService} from "../services/rest.service";
-import {Router} from "@angular/router";
-import {DataCollectorService} from "../services/data-collector.service"
-import {Item} from "../model/items.model";
+import {RestService} from '../services/rest.service';
+import {Router} from '@angular/router';
+import {DataCollectorService} from '../services/data-collector.service';
+import {Item} from '../model/items.model';
 
 @Component({
   selector: 'app-scan',
@@ -13,30 +13,35 @@ export class ScanComponent implements OnInit {
 
   private currentDevice: MediaDeviceInfo;
   private items: Array<Item>;
+  private itemsChecked: Set<number> = new Set<number>();
   private code: number;
-  private count: number = 0;
-  private success: boolean = false;
-  private error: boolean = false;
+  private count = 0;
+  private success = false;
+  private error = false;
 
   constructor(private rest: RestService, private router: Router, private collector: DataCollectorService) {
   }
 
   ngOnInit() {
     this.items = this.collector.getItems();
+    this.items.forEach(value => {
+      if (value.status === 'Checked') {
+        this.itemsChecked.add(value.id);
+      }
+    });
   }
 
   onResult(qrCode: string) {
     this.code = Number(qrCode);
     this.collector.setOrderId(Number(qrCode));
-    console.log(this.code);
-    if(this.items.length < 1) {
+    if (this.items.length < 1) {
       this.rest.getItemsListForProcess(this.code).then(value => {
-        value.body.forEach(item => item.status = "Unchecked");
+        value.body.forEach(item => item.status = 'Unchecked');
         this.items = value.body;
         this.collector.setItems(this.items);
         this.success = true;
         this.error = false;
-      }).catch(err => {this.error = true; this.success = false});
+      }).catch(err => {this.error = true; this.success = false; });
     } else {
       if (this.items.filter(item => item.id === this.code).length > 0) {
         this.success = true;
@@ -45,14 +50,12 @@ export class ScanComponent implements OnInit {
         this.error = true;
         this.success = false;
       }
-      this.items.filter(item => item.id === this.code).forEach(item => item.status = "Checked");
-       this.collector.getItems().forEach(item => {
-         if (item.status === "Checked") {
+      this.items.filter(item => item.id === this.code).forEach(item => item.status = 'Checked');
+      this.collector.getItems().forEach(item => {
+         if (item.status === 'Checked') {
            this.count++;
+           this.itemsChecked.add(item.id);
          }
-         console.log(item.status);
-         console.log(item.id);
-         console.log(this.count);
          if (this.count ===  this.items.length) {
            this.router.navigate(['/itemList']);
          }}
@@ -75,11 +78,14 @@ export class ScanComponent implements OnInit {
   }
 
   canUpdate() {
-    console.log(this.items);
     return this.items.length !== undefined && this.items.length !== 0;
   }
   clearError(): void {
     this.error = null;
+  }
+
+  canFinish() {
+    return this.items.length > 0;
   }
 }
 
