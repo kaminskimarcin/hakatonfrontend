@@ -11,7 +11,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatDialogModule, MatInputModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import {MatButtonModule, MatInputModule} from '@angular/material';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
     MatButtonModule,
   ],
   providers: [],
