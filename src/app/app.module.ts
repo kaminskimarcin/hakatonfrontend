@@ -5,13 +5,12 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { AppComponent } from './app.component';
 import { ScanComponent } from './scan/scan.component';
 import { ItemsListComponent } from './items-list/items-list.component';
-import {AppRoutingModule} from "./app-routing.module";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {AppRoutingModule} from './app-routing.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HomePageComponent } from './home-page/home-page.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatMenuModule} from "@angular/material/menu";
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import {MatMenuModule} from "@angular/material/menu";
     HttpClientModule,
     FormsModule,
     MatFormFieldModule,
-    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
