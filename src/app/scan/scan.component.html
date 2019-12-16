@@ -1,11 +1,13 @@
   <div class="scanner-shell">
     <header>
       <mat-form-field appearance="fill">
-        <select matNativeControl matInput (change)="onDeviceSelectChange($event.target.toString())">
-          <option value="" [selected]="!currentDevice">No Device Selected</option>
-          <option *ngFor="let device of availableDevices" [value]="device.deviceId"
-                  [selected]="currentDevice && device.deviceId === currentDevice.deviceId">{{device.label}}</option>
-        </select>
+        <label>
+          <select matNativeControl matInput (change)="onDeviceSelectChange($event.target.toString())">
+            <option value="" [selected]="!currentDevice">No Device Selected</option>
+            <option *ngFor="let device of availableDevices" [value]="device.deviceId"
+                    [selected]="currentDevice && device.deviceId === currentDevice.deviceId">{{device.label}}</option>
+          </select>
+        </label>
       </mat-form-field>
     </header>
 

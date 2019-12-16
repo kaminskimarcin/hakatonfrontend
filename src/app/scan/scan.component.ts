@@ -27,10 +27,11 @@ export class ScanComponent implements OnInit {
   public success = false;
   public error = false;
 
-  constructor(private rest: RestService, private router: Router, private collector: DataCollectorService) {
+  constructor(private rest: RestService, private router: Router, private collector: DataCollectorService, private readonly _dialog: MatDialog) {
   }
 
   onDeviceSelectChange(selected: string) {
+    console.log(selected);
     const device = this.availableDevices.find(x => x.deviceId === selected);
     this.currentDevice = device || null;
   }
@@ -79,6 +80,7 @@ export class ScanComponent implements OnInit {
   }
 
   onHasPermission(has: boolean) {
+    console.log(has);
     this.hasPermission = has;
   }
 
@@ -91,6 +93,7 @@ export class ScanComponent implements OnInit {
   }
 
   onCamerasFound(devices: MediaDeviceInfo[]): void {
+    console.log(devices);
     this.availableDevices = devices;
     this.hasDevices = Boolean(devices && devices.length);
   }
