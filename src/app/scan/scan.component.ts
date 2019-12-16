@@ -37,9 +37,6 @@ export class ScanComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.availableDevices !== undefined && this.availableDevices.length === 1) {
-      this.currentDevice = this.availableDevices[0];
-    }
     this.items = this.collector.getItems();
     this.items.forEach(value => {
       if (value.status === 'Checked') {
@@ -99,6 +96,9 @@ export class ScanComponent implements OnInit {
     console.log(devices);
     this.availableDevices = devices;
     this.hasDevices = Boolean(devices && devices.length);
+    if (this.availableDevices !== undefined && this.availableDevices.length === 1) {
+      this.currentDevice = this.availableDevices[0];
+    }
   }
 
   clearResult(): void {
