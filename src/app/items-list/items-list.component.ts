@@ -14,9 +14,9 @@ export class ItemsListComponent implements OnInit {
 
   constructor(public dataCollector: DataCollectorService, public router: Router, public rest: RestService) {}
 
-  private item: Item;
-  private items: Array<Item> = Array<Item>();
-  private isSubmit: boolean = false;
+  public item: Item;
+  public items: Array<Item> = Array<Item>();
+  public isSubmit: boolean = false;
 
 
   ngOnInit() {
