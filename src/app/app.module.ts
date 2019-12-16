@@ -11,7 +11,17 @@ import { HomePageComponent } from './home-page/home-page.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule, MatDialogModule, MatInputModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatDialogModule, MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatSelectModule,
+  MatTooltipModule
+} from '@angular/material';
+import {environment} from '../environments/environment';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,6 +39,14 @@ import {MatButtonModule, MatDialogModule, MatInputModule} from '@angular/materia
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    // Local
+    BrowserAnimationsModule,
+    FormsModule,
+    MatListModule,
+    MatTooltipModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatIconModule,
     MatDialogModule,
     MatButtonModule,
   ],
