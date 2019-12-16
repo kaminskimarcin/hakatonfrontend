@@ -4,6 +4,8 @@ import {Router} from '@angular/router';
 import {DataCollectorService} from '../services/data-collector.service';
 import {Item} from '../model/items.model';
 import {BehaviorSubject} from "rxjs";
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-scan',
