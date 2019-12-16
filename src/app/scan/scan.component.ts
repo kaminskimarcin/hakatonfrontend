@@ -91,7 +91,8 @@ export class ScanComponent implements OnInit {
   }
 
   onCamerasFound(devices: MediaDeviceInfo[]): void {
-    this.currentDevice = devices[0];
+    this.availableDevices = devices;
+    this.hasDevices = Boolean(devices && devices.length);
   }
 
   clearResult(): void {
