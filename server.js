@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const path = require('http');
+const http = require('http');
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/hakatonfrontend'));
