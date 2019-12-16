@@ -11,13 +11,13 @@ import {Item} from '../model/items.model';
 })
 export class ScanComponent implements OnInit {
 
-  private currentDevice: MediaDeviceInfo;
-  private items: Array<Item>;
-  private itemsChecked: Set<number> = new Set<number>();
-  private code: number;
-  private count = 0;
-  private success = false;
-  private error = false;
+  public currentDevice: MediaDeviceInfo;
+  public items: Array<Item>;
+  public itemsChecked: Set<number> = new Set<number>();
+  public code: number;
+  public count = 0;
+  public success = false;
+  public error = false;
 
   constructor(private rest: RestService, private router: Router, private collector: DataCollectorService) {
   }
