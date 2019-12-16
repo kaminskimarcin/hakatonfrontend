@@ -37,6 +37,9 @@ export class ScanComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.availableDevices !== undefined && this.availableDevices.length === 1) {
+      this.currentDevice = this.availableDevices[0];
+    }
     this.items = this.collector.getItems();
     this.items.forEach(value => {
       if (value.status === 'Checked') {
@@ -122,6 +125,10 @@ export class ScanComponent implements OnInit {
     this.itemsChecked = new Set<number>();
     this.collector.setItems(new Array<Item>());
     this.router.navigate(['/']);
+  }
+
+  shouldShowCameraChoose() {
+    return !(this.availableDevices === undefined || this.availableDevices.length === 1);
   }
 }
 

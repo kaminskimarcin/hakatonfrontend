@@ -1,5 +1,5 @@
   <div class="scanner-shell">
-    <header>
+    <header *ngIf="shouldShowCameraChoose()">
       <mat-form-field appearance="fill">
         <label>
           <select matNativeControl matInput (change)="onDeviceSelectChange($event.target.value)">
