@@ -20,7 +20,7 @@ export class RestService {
 
     const httpParams = new HttpParams().set('orderID', id.toString());
 
-    return this.httpClient.get<Array<Item>>('http://localhost:8080/' + 'getItemsListForProcess', {
+    return this.httpClient.get<Array<Item>>('https://hakatonmmm.herokuapp.com/' + 'getItemsListForProcess', {
       headers: httpHeaders,
       params: httpParams,
       observe: 'response'
@@ -33,7 +33,7 @@ export class RestService {
       'Cache-Control': 'no-cache'
     });
 
-    return this.httpClient.post<Number>('http://localhost:8080/' + 'submitCompletedItemsListForProcess', items, {
+    return this.httpClient.post<Number>('https://hakatonmmm.herokuapp.com/' + 'submitCompletedItemsListForProcess', items, {
       headers: httpHeaders,
       observe: 'response'
     }).toPromise();
