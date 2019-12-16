@@ -3,6 +3,7 @@ import {RestService} from '../services/rest.service';
 import {Router} from '@angular/router';
 import {DataCollectorService} from '../services/data-collector.service';
 import {Item} from '../model/items.model';
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-scan',
@@ -11,7 +12,12 @@ import {Item} from '../model/items.model';
 })
 export class ScanComponent implements OnInit {
 
-  public currentDevice: MediaDeviceInfo;
+  public availableDevices: MediaDeviceInfo[];
+  public currentDevice: MediaDeviceInfo = null;
+  hasDevices: boolean;
+  hasPermission: boolean;
+  torchEnabled = false;
+  torchAvailable$ = new BehaviorSubject<boolean>(false);
   public items: Array<Item>;
   public itemsChecked: Set<number> = new Set<number>();
   public code: number;
@@ -20,6 +26,11 @@ export class ScanComponent implements OnInit {
   public error = false;
 
   constructor(private rest: RestService, private router: Router, private collector: DataCollectorService) {
+  }
+
+  onDeviceSelectChange(selected: string) {
+    const device = this.availableDevices.find(x => x.deviceId === selected);
+    this.currentDevice = device || null;
   }
 
   ngOnInit() {
@@ -65,6 +76,18 @@ export class ScanComponent implements OnInit {
     this.count = 0;
   }
 
+  onHasPermission(has: boolean) {
+    this.hasPermission = has;
+  }
+
+  onTorchCompatible(isCompatible: boolean): void {
+    this.torchAvailable$.next(isCompatible || false);
+  }
+
+  toggleTorch(): void {
+    this.torchEnabled = !this.torchEnabled;
+  }
+
   onCamerasFound(devices: MediaDeviceInfo[]): void {
     this.currentDevice = devices[0];
   }
@@ -86,6 +109,13 @@ export class ScanComponent implements OnInit {
 
   canFinish() {
     return this.items.length > 0;
+  }
+
+  canRestart() {
+    this.items = new Array<Item>();
+    this.itemsChecked = new Set<number>();
+    this.collector.setItems(new Array<Item>());
+    this.router.navigate(['/']);
   }
 }
 
