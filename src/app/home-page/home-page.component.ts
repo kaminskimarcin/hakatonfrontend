@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, NgModule, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -7,6 +7,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
+  barcodeImage = require('../../assets/barcode_ean13_w10.png');
+  reportsImage = require('../../assets/123.png');
+  userImage = require('../../assets/User-icon.png');
+
   constructor(private router: Router) {
   }
 

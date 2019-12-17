@@ -1,9 +1,27 @@
-.scanner-shell {
-  height: 40%!important;
-  width: 40%!important;
-  align-content: center!important;
-  padding-top: 20px;
-  margin:0 auto;
+
+
+@media only screen and (max-width: 600px) {
+  .scanner-shell {
+    height: 50%!important;
+    width: 100%!important;
+    align-content: center!important;
+    padding-top: 20px;
+    margin:0 auto;
+  } {
+    background-color: lightblue;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .scanner-shell {
+    height: 40%!important;
+    width: 50%!important;
+    align-content: center!important;
+    padding-top: 20px;
+    margin:0 auto;
+  } {
+  background-color: lightblue;
+}
 }
 
 .results{

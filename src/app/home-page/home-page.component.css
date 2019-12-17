@@ -1,0 +1,7 @@
+.cardmargin {
+  margin: 15px!important;
+}
+
+.card-img-maxsize {
+  max-height: 320px;
+}

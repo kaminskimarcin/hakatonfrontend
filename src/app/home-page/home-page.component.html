@@ -1,6 +1,25 @@
-<div style="text-align: center; margin-top: 20px">
-  <h2>Start the process with scan barcode with order id</h2>
-  <div>
-    <button type="button" class="btn btn-primary" (click)="openScanner()">Scan barcode</button>
+<div class="card-deck cardmargin">
+  <div class="card cardmargin">
+    <img class="card-img-top card-img-maxsize" src="{{reportsImage}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Report generator</h5>
+      <p class="card-text">Generate reports for any available format: pdf, excel or txt</p>
+    </div>
+  </div>
+  <div class="card cardmargin">
+    <a (click)="openScanner()">
+      <img class="card-img-top card-img-maxsize" src="{{barcodeImage}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Scanner</h5>
+        <p class="card-text">At start you need to scan orderId, then all components from the list.</p>
+      </div>
+    </a>
+  </div>
+  <div class="card cardmargin">
+    <img class="card-img-top card-img-maxsize" src="{{userImage}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Profile</h5>
+      <p class="card-text">Manage your profile</p>
+    </div>
   </div>
 </div>
