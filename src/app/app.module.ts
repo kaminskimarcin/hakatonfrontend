@@ -52,6 +52,8 @@ import {
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ExtendedModule, FlexLayoutModule} from '@angular/flex-layout';
+import {ReportsComponent} from './reports/reports.component';
+import {TableDialogComponent} from './reports/dialogs/table-dialog';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import {ExtendedModule, FlexLayoutModule} from '@angular/flex-layout';
     ItemsListComponent,
     ScanComponent,
     HomePageComponent,
+    TableDialogComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,7 +124,9 @@ import {ExtendedModule, FlexLayoutModule} from '@angular/flex-layout';
   ],
   exports: [],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [TableDialogComponent]
+
 })
 export class AppModule {
 }

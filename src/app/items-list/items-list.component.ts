@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Item} from "../model/items.model";
-import {DataCollectorService} from "../services/data-collector.service";
-import {Router} from "@angular/router";
-import {RestService} from "../services/rest.service";
-import {ItemsList} from "../model/itemsList";
+import {Item} from '../model/items.model';
+import {DataCollectorService} from '../services/data-collector.service';
+import {Router} from '@angular/router';
+import {RestService} from '../services/rest.service';
+import {ItemsList} from '../model/itemsList';
 
 @Component({
   selector: 'app-items-list',
@@ -16,23 +16,23 @@ export class ItemsListComponent implements OnInit {
 
   public item: Item;
   public items: Array<Item> = Array<Item>();
-  public isSubmit: boolean = false;
+  public isSubmit = false;
 
 
   ngOnInit() {
     this.items = this.dataCollector.getItems();
-    this.item = new Item(1, "desc", 3, 3, "scanned");
+    this.item = new Item(1, 'desc', 3, 3, 'scanned');
   }
 
   submit() {
-    console.log("Data submitted");
+    console.log('Data submitted');
     this.dataCollector.setItems(this.items);
     this.items.forEach(item => console.log(item.quantity));
-    let itemList: ItemsList = new ItemsList(this.dataCollector.getOrderId(), this.dataCollector.getItems());
+    const itemList: ItemsList = new ItemsList(this.dataCollector.getOrderId(), this.dataCollector.getItems());
     this.rest.postCompletedItemsListForProcess(itemList).then(result => {
       if (result.status === 201) {
         this.router.navigate(['/']);
-        this.dataCollector.setItems(new Array<Item>())
+        this.dataCollector.setItems(new Array<Item>());
       } else {
 
       }

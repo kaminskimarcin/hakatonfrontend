@@ -1,7 +1,18 @@
 .cardmargin {
   margin: 15px!important;
+  border: 2px grey!important;
 }
 
 .card-img-maxsize {
   max-height: 320px;
+}
+
+.card {
+  padding: 10px;
+  box-shadow: 5px 10px #888888;
+  max-width: 420px;
+}
+
+.card-deck {
+  justify-content: center;
 }

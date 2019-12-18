@@ -1,15 +1,20 @@
 <title>3M Barcode Scanner</title>
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false">
-  <mdb-navbar-brand><img src="{{imageSrc}}" width="240" height="60" alt=""></mdb-navbar-brand>
+<mdb-navbar SideClass="navbar navbar-light bg-light navbar-expand-lg rgba(0,0,0,.04) text-bold-black" [containerInside]="false">
+  <mdb-navbar-brand><img src="{{imageSrc}}" width="328" height="60" alt=""></mdb-navbar-brand>
   <links>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto text-bold-black">
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect href="#">
+          <mdb-icon fas icon="envelope"></mdb-icon>
+          Home</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect (click)="openScanner()">
           <mdb-icon fas icon="envelope"></mdb-icon>
           Scanner</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>
+        <a class="nav-link waves-light" mdbWavesEffect (click)="navigateToReports()">
           <mdb-icon fas icon="cog"></mdb-icon>
           Reports</a>
       </li>

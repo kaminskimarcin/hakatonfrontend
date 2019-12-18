@@ -1,6 +1,8 @@
 import {Component, NgModule, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
+declare function require(path: string);
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -21,4 +23,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
   }
 
+  navigateToReports() {
+    this.router.navigate(['/reports']);
+  }
 }

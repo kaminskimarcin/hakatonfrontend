@@ -24,4 +24,8 @@ export class AppComponent implements OnInit {
   public openScanner() {
     this.router.navigate(['/scan']);
   }
+
+  navigateToReports() {
+    this.router.navigate(['/reports']);
+  }
 }

@@ -47,12 +47,12 @@ export class ScanComponent implements OnInit {
 
   onResult(qrCode: string) {
     this.code = Number(qrCode);
-    this.collector.setOrderId(Number(qrCode));
     if (this.items.length < 1) {
       this.rest.getItemsListForProcess(this.code).then(value => {
         value.body.forEach(item => item.status = 'Unchecked');
         this.items = value.body;
         this.collector.setItems(this.items);
+        this.collector.setOrderId(Number(qrCode));
         this.success = true;
         this.error = false;
       }).catch(err => {this.error = true; this.success = false; });

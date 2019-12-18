@@ -1,7 +1,8 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
-import {Item} from "../model/items.model";
-import {ItemsList} from "../model/itemsList";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
+import {Item} from '../model/items.model';
+import {ItemsList} from '../model/itemsList';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,23 +21,47 @@ export class RestService {
 
     const httpParams = new HttpParams().set('orderID', id.toString());
 
-    return this.httpClient.get<Array<Item>>('https://hakatonmmm.herokuapp.com/' + 'getItemsListForProcess', {
+    return this.httpClient.get<Array<Item>>('http://localhost:8080/' + 'getItemsListForProcess', {
       headers: httpHeaders,
       params: httpParams,
       observe: 'response'
     }).toPromise();
   }
 
-  public postCompletedItemsListForProcess(items: ItemsList): Promise<HttpResponse<Number>> {
+  public postCompletedItemsListForProcess(items: ItemsList): Promise<HttpResponse<number>> {
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'Cache-Control': 'no-cache'
     });
 
-    return this.httpClient.post<Number>('https://hakatonmmm.herokuapp.com/' + 'submitCompletedItemsListForProcess', items, {
+    return this.httpClient.post<number>('http://localhost:8080/' + 'submitCompletedItemsListForProcess', items, {
       headers: httpHeaders,
       observe: 'response'
     }).toPromise();
   }
 
+
+  public getAllAvailableCheckedProcess(): Promise<HttpResponse<Array<ItemsList>>> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache'
+    });
+
+    return this.httpClient.get<Array<ItemsList>>('http://localhost:8080/' + 'allAvailableCheckedProcess', {
+      headers: httpHeaders,
+      observe: 'response'
+    }).toPromise();
+  }
+
+  public generateReport(items: ItemsList): Promise<HttpResponse<Blob>> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache'
+    });
+
+    return this.httpClient.post<Blob>('http://localhost:8080/' + 'generateReport', items, {
+      headers: httpHeaders,
+      observe: 'response'
+    }).toPromise();
+  }
 }

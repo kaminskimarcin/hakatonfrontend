@@ -6,6 +6,6 @@ export class ItemsList {
 
   constructor(id?: number, items?: Array<Item>) {
     this.orderId = id;
-    this.items = items
+    this.items = items;
   }
 }
