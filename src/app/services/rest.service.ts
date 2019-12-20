@@ -21,7 +21,7 @@ export class RestService {
 
     const httpParams = new HttpParams().set('orderID', id.toString());
 
-    return this.httpClient.get<Array<Item>>('http://localhost:8080/' + 'getItemsListForProcess', {
+    return this.httpClient.get<Array<Item>>('https://hakatonmmm.herokuapp.com/' + 'getItemsListForProcess', {
       headers: httpHeaders,
       params: httpParams,
       observe: 'response'
