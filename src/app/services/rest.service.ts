@@ -34,7 +34,7 @@ export class RestService {
       'Cache-Control': 'no-cache'
     });
 
-    return this.httpClient.post<number>('http://localhost:8080/' + 'submitCompletedItemsListForProcess', items, {
+    return this.httpClient.post<number>('https://hakatonmmm.herokuapp.com/' + 'submitCompletedItemsListForProcess', items, {
       headers: httpHeaders,
       observe: 'response'
     }).toPromise();
@@ -47,7 +47,7 @@ export class RestService {
       'Cache-Control': 'no-cache'
     });
 
-    return this.httpClient.get<Array<ItemsList>>('http://localhost:8080/' + 'allAvailableCheckedProcess', {
+    return this.httpClient.get<Array<ItemsList>>('https://hakatonmmm.herokuapp.com/' + 'allAvailableCheckedProcess', {
       headers: httpHeaders,
       observe: 'response'
     }).toPromise();
@@ -59,7 +59,7 @@ export class RestService {
       'Cache-Control': 'no-cache'
     });
 
-    return this.httpClient.post<Blob>('http://localhost:8080/' + 'generateReport', items, {
+    return this.httpClient.post<Blob>('https://hakatonmmm.herokuapp.com/' + 'generateReport', items, {
       headers: httpHeaders,
       observe: 'response'
     }).toPromise();
