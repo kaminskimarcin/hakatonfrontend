@@ -54,6 +54,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ExtendedModule, FlexLayoutModule} from '@angular/flex-layout';
 import {ReportsComponent} from './reports/reports.component';
 import {TableDialogComponent} from './reports/dialogs/table-dialog';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import {TableDialogComponent} from './reports/dialogs/table-dialog';
     HomePageComponent,
     TableDialogComponent,
     ReportsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
