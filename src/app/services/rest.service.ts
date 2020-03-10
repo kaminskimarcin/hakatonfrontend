@@ -40,6 +40,23 @@ export class RestService {
     }).toPromise();
   }
 
+  public inputCsvFile(file: File) {
+    const httpHeaders = new HttpHeaders({
+      'Cache-Control': 'no-cache'
+    });
+
+    const data = new FormData();
+    data.append('file', file, file.name);
+
+    console.log(file.size);
+    console.log(file.name);
+
+    return this.httpClient.post('https://hakatonmmm.herokuapp.com/' + 'input-csv', data, {
+      headers: httpHeaders,
+      observe: 'response'
+    }).toPromise();
+  }
+
 
   public getAllAvailableCheckedProcess(): Promise<HttpResponse<Array<ItemsList>>> {
     const httpHeaders = new HttpHeaders({

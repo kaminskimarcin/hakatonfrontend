@@ -4,12 +4,14 @@ import {ItemsListComponent} from './items-list/items-list.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {ScanComponent} from './scan/scan.component';
 import {ReportsComponent} from './reports/reports.component';
+import {CuttingStockComponent} from './cutting-stock/cutting-stock.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent},
   { path: 'itemList', component: ItemsListComponent},
   { path: 'scan', component: ScanComponent},
   { path: 'reports', component: ReportsComponent},
+  { path: 'cutting-stock', component: CuttingStockComponent}
 ];
 
 @NgModule({

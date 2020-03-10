@@ -26,4 +26,8 @@ export class HomePageComponent implements OnInit {
   navigateToReports() {
     this.router.navigate(['/reports']);
   }
+
+  navigateToCuttingStock() {
+    this.router.navigate(['/cutting-stock']);
+  }
 }
