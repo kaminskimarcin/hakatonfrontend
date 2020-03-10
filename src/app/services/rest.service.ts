@@ -42,11 +42,9 @@ export class RestService {
 
   public inputCsvFile(file: File) {
     const httpHeaders = new HttpHeaders({
-      'Cache-Control': 'no-cache',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': 'true',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+      'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT, PATCH, HEAD',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With, Origin, X-Requested-With, Content-Type, Accept'
     });
 
     const data = new FormData();
