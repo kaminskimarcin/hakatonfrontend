@@ -56,6 +56,7 @@ import {ReportsComponent} from './reports/reports.component';
 import {TableDialogComponent} from './reports/dialogs/table-dialog';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import { CuttingStockComponent } from './cutting-stock/cutting-stock.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import {RegisterComponent} from './register/register.component';
     TableDialogComponent,
     ReportsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CuttingStockComponent
   ],
   imports: [
     BrowserModule,
