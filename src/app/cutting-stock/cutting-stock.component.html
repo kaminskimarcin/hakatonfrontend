@@ -1,8 +1,155 @@
-<h3>Input CSV</h3>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-grid-beat"
+>
+  <p style="font-size: 20px; color: white; margin-top: 5px">Processing request...</p>
+</ngx-spinner>
 
-<div>
-  <input type="file" (change)="onFileChanged($event)">
+<!--<div class="card-deck cardmargin text-center">
+
+
+  <div class="card cardmargin">
+    <h3 class="card-img-top card-img-maxsize">Input your order in xlsx format</h3>
+
+    <div class="card-body">
+      <button (click)="hiddenfileinput.click()" class="btn btn-outline-dark text-center-ver"><i
+        class="material-icons left margin">cloud</i>Select XLSL file
+      </button>
+      <h3 *ngIf="selectedFile">{{this.selectedFile.name}}</h3>
+    </div>
+
+    <input type="file" (change)="onFileChanged($event)" style="display: none" #hiddenfileinput>
+
+    <div class="card-body">
+      <button type="button" (click)="onSubmit()" class="btn btn-outline-dark">Update file</button>
+    </div>
+  </div>
+</div>-->
+
+
+<div class="card-deck cardmargin text-center">
+  <div class="card cardmargin">
+    <div class="tp-box" [@flipState]="flip">
+      <div class="tp-box__side tp-box__front">
+        <mat-form-field hintLabel="Only numbers" appearance="fill">
+          <mat-label>SalesOrder</mat-label>
+          <input matInput #order.salesOrder [(ngModel)]=order.salesOrder placeholder="4008552176">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Item</mat-label>
+          <input matInput #item [(ngModel)]=order.item placeholder="7100104668">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Desc</mat-label>
+          <input matInput #desc [(ngModel)]=order.desc placeholder="7816E CONFIG ROLL">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Jumbo width</mat-label>
+          <input matInput #jumboWidth [(ngModel)]=order.jumboWidth placeholder="1510">
+        </mat-form-field>
+
+        <button type="button" (click)="save()" class="btn btn-outline-dark">Save</button>
+
+      </div>
+      <div class="tp-box__side tp-box__back">
+        <mat-form-field hintLabel="Only numbers" appearance="fill">
+          <mat-label>SalesOrder</mat-label>
+          <input matInput #order.salesOrder disabled="disabled" [(ngModel)]=order.salesOrder placeholder="4008552176">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Item</mat-label>
+          <input matInput #item disabled="disabled" [(ngModel)]=order.item placeholder="7100104668">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Desc</mat-label>
+          <input matInput #desc disabled="disabled" [(ngModel)]=order.desc placeholder="7816E CONFIG ROLL">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Jumbo width</mat-label>
+          <input matInput #jumboWidth disabled="disabled" [(ngModel)]=order.jumboWidth placeholder="1510">
+        </mat-form-field>
+
+        <button type="button" (click)="save()" class="btn btn-outline-dark">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card cardmargin">
+    <mat-form-field appearance="fill">
+      <mat-label>ProcOrd</mat-label>
+      <input matInput #procOrd [(ngModel)]=singleCut.procOrd placeholder="102673247">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>OrderQTY</mat-label>
+      <input matInput #orderQty [(ngModel)]=singleCut.orderQty placeholder="1">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Width</mat-label>
+      <input matInput #width [(ngModel)]=singleCut.width placeholder="315">
+    </mat-form-field>
+
+    <button type="button" (click)="add()" class="btn btn-outline-dark">Add</button>
+
+    <br>
+    <button type="button" (click)="add()" disabled class="btn btn-outline-dark">Remove</button>
+    <br>
+  </div>
 </div>
 
-<input type="button" (click)="onSubmit()" value="upload">
+
+<div class="row centerDiv" style="margin: 20px">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="procOrd">
+      <th mat-header-cell *matHeaderCellDef>Process Order Id</th>
+      <td mat-cell *matCellDef="let element"> {{element.procOrd}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="orderQty">
+      <th mat-header-cell *matHeaderCellDef> Order Quantity</th>
+      <td mat-cell *matCellDef="let element"> {{element.orderQty}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="width">
+      <th mat-header-cell *matHeaderCellDef> Width</th>
+      <td mat-cell *matCellDef="let element"> {{element.width}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<div class="card-deck" style="margin: 20px">
+  <button type="button" (click)="onSubmit()" class="btn btn-outline-dark align-content-center">Generate result</button>
+</div>
+
+<div class="row centerDiv" style="margin: 20px">
+  <table mat-table [dataSource]="singleCutsResponse.rawData" class="mat-elevation-z8" *ngIf="showTable">
+    <!-- Position Column -->
+    <ng-container matColumnDef="procOrd">
+      <th mat-header-cell *matHeaderCellDef>Process Order Id</th>
+      <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="orderQty">
+      <th mat-header-cell *matHeaderCellDef> Order Quantity</th>
+      <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsResponse"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsResponse;"></tr>
+  </table>
+</div>
+
 

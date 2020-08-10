@@ -57,6 +57,7 @@ import {TableDialogComponent} from './reports/dialogs/table-dialog';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import { CuttingStockComponent } from './cutting-stock/cutting-stock.component';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -121,6 +122,7 @@ import { CuttingStockComponent } from './cutting-stock/cutting-stock.component';
     MatSelectModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    NgxSpinnerModule,
     MatSliderModule,
     MatSnackBarModule,
     MatSortModule,

@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common
 import {Item} from '../model/items.model';
 import {ItemsList} from '../model/itemsList';
 import {Observable} from 'rxjs';
+import {Order} from '../model/order';
+import {OrderResponse} from "../model/order-response";
 
 @Injectable({
   providedIn: 'root'
@@ -40,20 +42,16 @@ export class RestService {
     }).toPromise();
   }
 
-  public inputCsvFile(file: File) {
+  public calculateResult(order: Order): Promise<HttpResponse<OrderResponse>> {
     const httpHeaders = new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT, PATCH, HEAD',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With, Origin, X-Requested-With, Content-Type, Accept'
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, ' +
+        'Content-Length, X-Requested-With, Origin, X-Requested-With, Content-Type, Accept'
     });
 
-    const data = new FormData();
-    data.append('file', file, file.name);
 
-    console.log(file.size);
-    console.log(file.name);
-
-    return this.httpClient.post('https://hakatonmmm.herokuapp.com/' + 'input-csv', data, {
+    return this.httpClient.post('http://localhost:8080/' + 'input-csv', order, {
       headers: httpHeaders,
       observe: 'response'
     }).toPromise();
