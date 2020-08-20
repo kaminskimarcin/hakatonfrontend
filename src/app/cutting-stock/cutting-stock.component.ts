@@ -6,7 +6,7 @@ import {SingleCut} from '../model/single-cut';
 import {MatTableDataSource} from '@angular/material/table';
 import {BehaviorSubject} from 'rxjs';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {OrderResponse} from "../model/order-response";
+import {OrderResponse} from '../model/order-response';
 
 @Component({
   selector: 'app-cutting-stock',
@@ -30,7 +30,7 @@ export class CuttingStockComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['procOrd', 'orderQty', 'width'];
-  displayedColumnsResponse: string[] = ['procOrd', 'orderQty'];
+  displayedColumnsResponse: string[] = ['procOrd', 'orderQty', 'jumboNumber', 'checked'];
   singleCut: SingleCut = new SingleCut();
   order: Order = new Order();
   singleCuts: Array<SingleCut>;
