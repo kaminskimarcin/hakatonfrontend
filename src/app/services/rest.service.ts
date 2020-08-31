@@ -4,7 +4,10 @@ import {Item} from '../model/items.model';
 import {ItemsList} from '../model/itemsList';
 import {Observable} from 'rxjs';
 import {Order} from '../model/order';
-import {OrderResponse} from "../model/order-response";
+import {OrderResponse} from '../model/order-response';
+import {SingleCut} from '../model/single-cut';
+import {CheckDto} from '../model/check-dto';
+import {Purchase} from '../model/purchase';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +54,7 @@ export class RestService {
     });
 
 
-    return this.httpClient.post('http://localhost:8080/' + 'input-csv', order, {
+    return this.httpClient.post('http://localhost:8080/' + 'generate', order, {
       headers: httpHeaders,
       observe: 'response'
     }).toPromise();
@@ -77,6 +80,36 @@ export class RestService {
     });
 
     return this.httpClient.post<Blob>('https://hakatonmmm.herokuapp.com/' + 'generateReport', items, {
+      headers: httpHeaders,
+      observe: 'response'
+    }).toPromise();
+  }
+
+  checkSingleCut(element: SingleCut): Promise<HttpResponse<any>> {
+    const httpHeaders = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT, PATCH, HEAD',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, ' +
+        'Content-Length, X-Requested-With, Origin, X-Requested-With, Content-Type, Accept',
+      'Content-Type': 'application/json'
+    });
+
+    return this.httpClient.patch<HttpResponse<any>>('http://localhost:8080/' + 'singleCut/' + element.id, new CheckDto(!element.isChecked), {
+      headers: httpHeaders,
+      responseType: 'text' as 'json'
+    }).toPromise();
+  }
+
+  getOrders(): Promise<HttpResponse<Purchase>> {
+    const httpHeaders = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT, PATCH, HEAD',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, ' +
+        'Content-Length, X-Requested-With, Origin, X-Requested-With, Content-Type, Accept',
+      'Content-Type': 'application/json'
+    });
+
+    return this.httpClient.get<Purchase>('http://localhost:8080/' + 'orders', {
       headers: httpHeaders,
       observe: 'response'
     }).toPromise();

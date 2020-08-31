@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {RestService} from '../services/rest.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Order} from '../model/order';
@@ -7,6 +7,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {BehaviorSubject} from 'rxjs';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {OrderResponse} from '../model/order-response';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {delay} from 'rxjs/operators';
 
 @Component({
   selector: 'app-cutting-stock',
@@ -25,12 +27,13 @@ import {OrderResponse} from '../model/order-response';
     ])
   ]
 })
-export class CuttingStockComponent implements OnInit {
-  constructor(private changeDetectorRefs: ChangeDetectorRef, private restService: RestService, private spinner: NgxSpinnerService) {
+export class CuttingStockComponent implements OnInit, AfterViewInit {
+  constructor(private formBuilder: FormBuilder, private changeDetectorRefs: ChangeDetectorRef,
+              private restService: RestService, private spinner: NgxSpinnerService) {
   }
 
-  displayedColumns: string[] = ['procOrd', 'orderQty', 'width'];
-  displayedColumnsResponse: string[] = ['procOrd', 'orderQty', 'jumboNumber', 'checked'];
+  displayedColumns: string[] = ['orderQty', 'width'];
+  displayedColumnsResponse: string[] = ['value', 'orderQty', 'jumboNumber', 'checked'];
   singleCut: SingleCut = new SingleCut();
   order: Order = new Order();
   singleCuts: Array<SingleCut>;
@@ -38,6 +41,8 @@ export class CuttingStockComponent implements OnInit {
   showTable: boolean;
   dataSource = new BehaviorSubject([]);
   singleCutsResponse: OrderResponse;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   flip = 'inactive';
 
@@ -54,6 +59,15 @@ export class CuttingStockComponent implements OnInit {
 
   ngOnInit() {
     this.showTable = false;
+    this.firstFormGroup = this.formBuilder.group({
+      item: ['', Validators.required],
+      desc: ['', Validators.required],
+      jumboWidth: ['', Validators.required]
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      orderQty: [''],
+      width: ['']
+    });
   }
 
   add() {
@@ -74,5 +88,38 @@ export class CuttingStockComponent implements OnInit {
 
   }
 
+  check(element: SingleCut) {
+    this.spinner.show();
+
+    this.restService.checkSingleCut(element).then(value => {
+      console.log(element.isChecked);
+      console.log(value);
+      console.log(this.singleCutsResponse.rawData);
+
+      this.delay(1000);
+      this.spinner.hide();
+    });
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  clean() {
+    this.order = new Order();
+    this.singleCut = new SingleCut();
+    this.singleCuts = new Array<SingleCut>();
+    this.dataSource = new BehaviorSubject([]);
+  }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
+  cleanTable() {
+    this.dataSource = new BehaviorSubject([]);
+    this.singleCut = new SingleCut();
+    this.singleCuts = new Array<SingleCut>();
+    this.order.singleOrders = new Array<SingleCut>();
+  }
 }
 

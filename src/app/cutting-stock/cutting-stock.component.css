@@ -2,6 +2,13 @@ table {
   width: 40%;
 }
 
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="table"] {
+    width: 100%;
+  }
+}
+
 .mat-form-field {
   font-size: 14px;
   width: 100%;
@@ -16,6 +23,7 @@ table {
   align-content: center;
   margin: 0 auto;
   padding: 0;
+  width: 100%;
 }
 
 .cardmargin {
@@ -43,6 +51,9 @@ table {
 
 .text-center-ver {
   margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -89,4 +100,12 @@ table {
   -webkit-transform : rotateY(-180deg);
   -ms-transform     : rotateY(-180deg);
   transform         : rotateY(-180deg);
+}
+
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
 }

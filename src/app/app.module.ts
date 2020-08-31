@@ -9,7 +9,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HomePageComponent} from './home-page/home-page.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {
   MatButtonModule,
@@ -58,6 +58,8 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import { CuttingStockComponent } from './cutting-stock/cutting-stock.component';
 import {NgxSpinnerModule} from "ngx-spinner";
+import { CuttingStockReportsComponent } from './cutting-stock-reports/cutting-stock-reports.component';
+import {TableDialogCutsComponent} from "./reports/dialogs/table-dialog-cuts";
 
 @NgModule({
   declarations: [
@@ -66,74 +68,78 @@ import {NgxSpinnerModule} from "ngx-spinner";
     ScanComponent,
     HomePageComponent,
     TableDialogComponent,
+    TableDialogCutsComponent,
     ReportsComponent,
     LoginComponent,
     RegisterComponent,
-    CuttingStockComponent
+    CuttingStockComponent,
+    CuttingStockReportsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    ZXingScannerModule.forRoot(),
-    HttpClientModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    // Local
-    BrowserAnimationsModule,
-    FormsModule,
-    MatListModule,
-    MatCardModule,
-    MatTooltipModule,
-    MDBBootstrapModule.forRoot(),
-    MatSelectModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    ExtendedModule,
-    FlexLayoutModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatCommonModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatLineModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatOptionModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatPseudoCheckboxModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSlideToggleModule,
-    NgxSpinnerModule,
-    MatSliderModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatStepperModule,
-    MatTableModule,
-    MatTabsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        ZXingScannerModule.forRoot(),
+        HttpClientModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        // Local
+        BrowserAnimationsModule,
+        FormsModule,
+        MatListModule,
+        MatCardModule,
+        MatTooltipModule,
+        MDBBootstrapModule.forRoot(),
+        MatSelectModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        ExtendedModule,
+        FlexLayoutModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        MatCheckboxModule,
+        MatChipsModule,
+        MatCommonModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatDividerModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatLineModule,
+        MatListModule,
+        MatMenuModule,
+        MatNativeDateModule,
+        MatOptionModule,
+        MatPaginatorModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
+        MatPseudoCheckboxModule,
+        MatRadioModule,
+        MatRippleModule,
+        MatSelectModule,
+        MatSidenavModule,
+        MatSlideToggleModule,
+        NgxSpinnerModule,
+        MatSliderModule,
+        MatSnackBarModule,
+        MatSortModule,
+        MatStepperModule,
+        MatTableModule,
+        MatTabsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule
+    ],
   exports: [],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [TableDialogComponent]
+  entryComponents: [TableDialogComponent, TableDialogCutsComponent]
 
 })
 export class AppModule {

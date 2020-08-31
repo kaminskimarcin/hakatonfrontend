@@ -1,7 +1,16 @@
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-grid-beat"
+>
+  <p style="font-size: 20px; color: white; margin-top: 5px">Processing request...</p>
+</ngx-spinner>
 <title>3M Barcode Scanner</title>
 <mdb-navbar SideClass="navbar navbar-light bg-light navbar-expand-lg rgba(0,0,0,.04) text-bold-black" [containerInside]="false">
-  <mdb-navbar-brand><img src="{{imageSrc}}" width="328" height="60" alt=""></mdb-navbar-brand>
-  <links>
+  <a class="nav-link waves-light" mdbWavesEffect href="#"><mdb-navbar-brand><img src="{{imageSrc}}" width="328" height="60" alt=""></mdb-navbar-brand>
+  </a>
+    <links>
     <ul class="navbar-nav ml-auto text-bold-black">
       <li class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect href="#">
@@ -21,10 +30,10 @@
       <li class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           <mdb-icon fas icon="user"></mdb-icon>
-          Account<span class="caret"></span></a>
+          Cutting Stock<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect (click)="navigateToCuttingStock()">Calculator</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect (click)="navigateToCuttingStockReports()">Reports</a>
         </div>
       </li>
     </ul>

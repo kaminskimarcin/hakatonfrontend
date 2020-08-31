@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 
 declare function require(path: string);
@@ -27,5 +27,14 @@ export class AppComponent implements OnInit {
 
   navigateToReports() {
     this.router.navigate(['/reports']);
+  }
+
+  navigateToCuttingStock() {
+    this.router.navigate(['/cutting-stock']);
+  }
+
+  navigateToCuttingStockReports() {
+    this.router.navigate(['/cutting-stock-reports']);
+
   }
 }

@@ -29,137 +29,259 @@
 </div>-->
 
 
-<div class="card-deck cardmargin text-center">
-  <div class="card cardmargin">
-    <div class="tp-box" [@flipState]="flip">
-      <div class="tp-box__side tp-box__front">
-        <mat-form-field hintLabel="Only numbers" appearance="fill">
-          <mat-label>SalesOrder</mat-label>
-          <input matInput #order.salesOrder [(ngModel)]=order.salesOrder placeholder="4008552176">
-        </mat-form-field>
+<!--<div class="card-deck cardmargin text-center">-->
+<!--  <div class="card cardmargin">-->
+<!--    <div class="tp-box" [@flipState]="flip">-->
+<!--      <div class="tp-box__side tp-box__front">-->
+<!--        <mat-form-field hintLabel="Only numbers" appearance="fill">-->
+<!--          <mat-label>SalesOrder</mat-label>-->
+<!--          <input matInput #order.salesOrder [(ngModel)]=order.salesOrder placeholder="4008552176">-->
+<!--        </mat-form-field>-->
 
-        <mat-form-field appearance="fill">
+<!--        <mat-form-field appearance="fill">-->
+<!--          <mat-label>Item</mat-label>-->
+<!--          <input matInput #item [(ngModel)]=order.item placeholder="7100104668">-->
+<!--        </mat-form-field>-->
+
+<!--        <mat-form-field appearance="fill">-->
+<!--          <mat-label>Desc</mat-label>-->
+<!--          <input matInput #desc [(ngModel)]=order.desc placeholder="7816E CONFIG ROLL">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="fill">-->
+<!--          <mat-label>Jumbo width</mat-label>-->
+<!--          <input matInput #jumboWidth [(ngModel)]=order.jumboWidth placeholder="1510">-->
+<!--        </mat-form-field>-->
+
+<!--        <button type="button" (click)="save()" class="btn btn-outline-dark">Save</button>-->
+
+<!--      </div>-->
+<!--      <div class="tp-box__side tp-box__back">-->
+<!--        <mat-form-field hintLabel="Only numbers" appearance="fill">-->
+<!--          <mat-label>SalesOrder</mat-label>-->
+<!--          <input matInput #order.salesOrder disabled="disabled" [(ngModel)]=order.salesOrder placeholder="4008552176">-->
+<!--        </mat-form-field>-->
+
+<!--        <mat-form-field appearance="fill">-->
+<!--          <mat-label>Item</mat-label>-->
+<!--          <input matInput #item disabled="disabled" [(ngModel)]=order.item placeholder="7100104668">-->
+<!--        </mat-form-field>-->
+
+<!--        <mat-form-field appearance="fill">-->
+<!--          <mat-label>Desc</mat-label>-->
+<!--          <input matInput #desc disabled="disabled" [(ngModel)]=order.desc placeholder="7816E CONFIG ROLL">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="fill">-->
+<!--          <mat-label>Jumbo width</mat-label>-->
+<!--          <input matInput #jumboWidth disabled="disabled" [(ngModel)]=order.jumboWidth placeholder="1510">-->
+<!--        </mat-form-field>-->
+
+<!--        <button type="button" (click)="save()" class="btn btn-outline-dark">Reset</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="card cardmargin">-->
+<!--    <mat-form-field appearance="fill">-->
+<!--      <mat-label>ProcOrd</mat-label>-->
+<!--      <input matInput #procOrd [(ngModel)]=singleCut.procOrd placeholder="102673247">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field appearance="fill">-->
+<!--      <mat-label>OrderQTY</mat-label>-->
+<!--      <input matInput #orderQty [(ngModel)]=singleCut.orderQty placeholder="1">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field appearance="fill">-->
+<!--      <mat-label>Width</mat-label>-->
+<!--      <input matInput #width [(ngModel)]=singleCut.width placeholder="315">-->
+<!--    </mat-form-field>-->
+
+<!--    <button type="button" (click)="add()" class="btn btn-outline-dark">Add</button>-->
+
+<!--    <br>-->
+<!--    <button type="button" (click)="add()" disabled class="btn btn-outline-dark">Remove</button>-->
+<!--    <br>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--<div class="row centerDiv" style="margin: 20px">-->
+<!--  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">-->
+<!--    &lt;!&ndash; Position Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="procOrd">-->
+<!--      <th mat-header-cell *matHeaderCellDef>Process Order Id</th>-->
+<!--      <td mat-cell *matCellDef="let element"> {{element.procOrd}} </td>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Name Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="orderQty">-->
+<!--      <th mat-header-cell *matHeaderCellDef> Order Quantity</th>-->
+<!--      <td mat-cell *matCellDef="let element"> {{element.orderQty}} </td>-->
+<!--    </ng-container>-->
+
+<!--    <ng-container matColumnDef="width">-->
+<!--      <th mat-header-cell *matHeaderCellDef> Width</th>-->
+<!--      <td mat-cell *matCellDef="let element"> {{element.width}} </td>-->
+<!--    </ng-container>-->
+
+<!--    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--  </table>-->
+<!--</div>-->
+
+<!--<div class="card-deck" style="margin: 20px">-->
+<!--  <button type="button" (click)="onSubmit()" class="btn btn-outline-dark align-content-center">Generate result</button>-->
+<!--</div>-->
+
+<!--<div class="row centerDiv" style="margin: 20px">-->
+<!--  <table mat-table [dataSource]="singleCutsResponse.rawData" class="mat-elevation-z8" *ngIf="showTable">-->
+<!--    &lt;!&ndash; Position Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="procOrd">-->
+<!--      <th mat-header-cell *matHeaderCellDef>Process Order Id</th>-->
+<!--      <td mat-cell *matCellDef="let element"> {{element.value}} </td>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Name Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="orderQty">-->
+<!--      <th mat-header-cell *matHeaderCellDef> Order Quantity</th>-->
+<!--      <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>-->
+<!--    </ng-container>-->
+
+<!--    <ng-container matColumnDef="jumboNumber">-->
+<!--      <th mat-header-cell *matHeaderCellDef> Jumbo number</th>-->
+<!--      <td mat-cell *matCellDef="let element"> {{element.jumboNumber}} </td>-->
+<!--    </ng-container>-->
+
+<!--    <ng-container matColumnDef="checked">-->
+<!--      <th mat-header-cell *matHeaderCellDef> Check</th>-->
+<!--      <td mat-cell *matCellDef="let element"> <mat-checkbox [(ngModel)]="element.isChecked"></mat-checkbox> </td>-->
+<!--    </ng-container>-->
+
+<!--    <tr mat-header-row *matHeaderRowDef="displayedColumnsResponse"></tr>-->
+<!--    <tr mat-row *matRowDef="let row; columns: displayedColumnsResponse;"></tr>-->
+<!--  </table>-->
+<div class="container-fluid">
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill process information</ng-template>
+        <!--        <mat-form-field hintLabel="Only numbers" appearance="fill">-->
+        <!--          <mat-label>SalesOrder</mat-label>-->
+        <!--          <input matInput #order.salesOrder [(ngModel)]=order.salesOrder placeholder="4008552176">-->
+        <!--        </mat-form-field>-->
+
+        <mat-form-field>
           <mat-label>Item</mat-label>
-          <input matInput #item [(ngModel)]=order.item placeholder="7100104668">
+          <input matInput formControlName="item" #item [(ngModel)]=order.item placeholder="7100104668">
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <mat-label>Desc</mat-label>
-          <input matInput #desc [(ngModel)]=order.desc placeholder="7816E CONFIG ROLL">
+          <input matInput formControlName="desc" #desc [(ngModel)]=order.desc placeholder="7816E CONFIG ROLL">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <mat-label>Jumbo width</mat-label>
-          <input matInput #jumboWidth [(ngModel)]=order.jumboWidth placeholder="1510">
+          <input matInput formControlName="jumboWidth" #jumboWidth [(ngModel)]=order.jumboWidth placeholder="1510">
         </mat-form-field>
 
-        <button type="button" (click)="save()" class="btn btn-outline-dark">Save</button>
-
-      </div>
-      <div class="tp-box__side tp-box__back">
-        <mat-form-field hintLabel="Only numbers" appearance="fill">
-          <mat-label>SalesOrder</mat-label>
-          <input matInput #order.salesOrder disabled="disabled" [(ngModel)]=order.salesOrder placeholder="4008552176">
+        <!--        <button type="button" (click)="save()" class="btn btn-outline-dark">Save</button>-->
+        <div>
+          <button class="btn btn-dark" mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill single orders</ng-template>
+        <mat-form-field>
+          <mat-label>OrderQTY</mat-label>
+          <input matInput formControlName="orderQty" #orderQty [(ngModel)]=singleCut.orderQty placeholder="1">
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Item</mat-label>
-          <input matInput #item disabled="disabled" [(ngModel)]=order.item placeholder="7100104668">
+        <mat-form-field>
+          <mat-label>Width</mat-label>
+          <input matInput formControlName="width" #width [(ngModel)]=singleCut.width placeholder="315">
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Desc</mat-label>
-          <input matInput #desc disabled="disabled" [(ngModel)]=order.desc placeholder="7816E CONFIG ROLL">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Jumbo width</mat-label>
-          <input matInput #jumboWidth disabled="disabled" [(ngModel)]=order.jumboWidth placeholder="1510">
-        </mat-form-field>
+        <button type="button" (click)="add()" class="btn btn-outline-dark">Add</button>
 
-        <button type="button" (click)="save()" class="btn btn-outline-dark">Reset</button>
-      </div>
+        <div class="row centerDiv" style="margin: 20px">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Name Column -->
+            <ng-container matColumnDef="orderQty">
+              <th mat-header-cell *matHeaderCellDef> Order Quantity</th>
+              <td mat-cell *matCellDef="let element"> {{element.orderQty}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="width">
+              <th mat-header-cell *matHeaderCellDef> Width</th>
+              <td mat-cell *matCellDef="let element"> {{element.width}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+        <div class="btn-toolbar text-center-ver" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button class="btn btn-dark" mat-button matStepperPrevious>Back</button>
+          </div>
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+            <button class="btn btn-dark" mat-button (click)="cleanTable()">Reset inputted data</button>
+          </div>
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+            <button class="btn btn-dark" mat-button matStepperNext (click)="onSubmit()">Generate result</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <div class="text-center-ver">
+
+      <mat-step>
+        <ng-template matStepLabel>Result</ng-template>
+        <p>Generated result</p>
+        <div class="row centerDiv" style="margin: 20px">
+          <table mat-table [dataSource]="singleCutsResponse.rawData" class="mat-elevation-z8" *ngIf="showTable">-->
+            <!-- Position Column -->
+            <ng-container matColumnDef="value">
+              <th mat-header-cell *matHeaderCellDef>Value</th>
+              <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="orderQty">
+              <th mat-header-cell *matHeaderCellDef>Quantity</th>
+              <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="jumboNumber">
+              <th mat-header-cell *matHeaderCellDef>Jumbo number</th>
+              <td mat-cell *matCellDef="let element"> {{element.jumboNumber}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="checked">
+              <th mat-header-cell *matHeaderCellDef> Check</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-checkbox [(ngModel)]="element.isChecked" (change)="check(element)"></mat-checkbox>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsResponse"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsResponse;"></tr>
+          </table>
+        </div>
+        <div class="btn-toolbar text-center-ver" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button class="btn btn-dark" mat-button matStepperPrevious>Back</button>
+          </div>
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+            <button class="btn btn-dark" mat-button (click)="stepper.reset(); clean()">Reset</button>
+          </div>
+        </div>
+      </mat-step>
     </div>
-  </div>
 
-  <div class="card cardmargin">
-    <mat-form-field appearance="fill">
-      <mat-label>ProcOrd</mat-label>
-      <input matInput #procOrd [(ngModel)]=singleCut.procOrd placeholder="102673247">
-    </mat-form-field>
+  </mat-horizontal-stepper>
+  <!--</div>-->
 
-    <mat-form-field appearance="fill">
-      <mat-label>OrderQTY</mat-label>
-      <input matInput #orderQty [(ngModel)]=singleCut.orderQty placeholder="1">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Width</mat-label>
-      <input matInput #width [(ngModel)]=singleCut.width placeholder="315">
-    </mat-form-field>
-
-    <button type="button" (click)="add()" class="btn btn-outline-dark">Add</button>
-
-    <br>
-    <button type="button" (click)="add()" disabled class="btn btn-outline-dark">Remove</button>
-    <br>
-  </div>
 </div>
-
-
-<div class="row centerDiv" style="margin: 20px">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!-- Position Column -->
-    <ng-container matColumnDef="procOrd">
-      <th mat-header-cell *matHeaderCellDef>Process Order Id</th>
-      <td mat-cell *matCellDef="let element"> {{element.procOrd}} </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="orderQty">
-      <th mat-header-cell *matHeaderCellDef> Order Quantity</th>
-      <td mat-cell *matCellDef="let element"> {{element.orderQty}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="width">
-      <th mat-header-cell *matHeaderCellDef> Width</th>
-      <td mat-cell *matCellDef="let element"> {{element.width}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</div>
-
-<div class="card-deck" style="margin: 20px">
-  <button type="button" (click)="onSubmit()" class="btn btn-outline-dark align-content-center">Generate result</button>
-</div>
-
-<div class="row centerDiv" style="margin: 20px">
-  <table mat-table [dataSource]="singleCutsResponse.rawData" class="mat-elevation-z8" *ngIf="showTable">
-    <!-- Position Column -->
-    <ng-container matColumnDef="procOrd">
-      <th mat-header-cell *matHeaderCellDef>Process Order Id</th>
-      <td mat-cell *matCellDef="let element"> {{element.value}} </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="orderQty">
-      <th mat-header-cell *matHeaderCellDef> Order Quantity</th>
-      <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="jumboNumber">
-      <th mat-header-cell *matHeaderCellDef> Jumbo number</th>
-      <td mat-cell *matCellDef="let element"> {{element.jumboNumber}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="checked">
-      <th mat-header-cell *matHeaderCellDef> Check</th>
-      <td mat-cell *matCellDef="let element"> <mat-checkbox [(ngModel)]="element.isChecked"></mat-checkbox> </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumnsResponse"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumnsResponse;"></tr>
-  </table>
-</div>
-
-

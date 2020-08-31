@@ -1,9 +1,9 @@
-export class SingleCut {
+export class SingleOrder {
   id?: number;
   procOrd?: number;
   orderQty?: number;
   width?: number;
-  isChecked?: boolean;
+
 
   constructor() {
   }
